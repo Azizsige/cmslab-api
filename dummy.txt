@@ -1,0 +1,67 @@
+<% if (foto.length == 0) { %>
+    <h1 class="text-center shadow-none mt-5">Belum ada data Murid</h1>
+    <% } else {%>
+
+
+    <div class="table-responsive text-nowrap">
+      <table class="table table-bordered table-bordered table-striped table-hover">
+        <thead class="bg-secondary">
+          <tr>
+            <!-- <th class="fs-5 text-white">No</th> -->
+            <th class="fs-5 text-white">No</th>
+            <th class="fs-5 text-white">Foto</th>
+            <th class="fs-5 text-white">Nama</th>
+            <th class="fs-5 text-white">Wali Kelas</th>
+            <th class="fs-5 text-white">Mata Pelajaran</th>
+            <th class="fs-5 text-white">Jurusan</th>
+            <th class="fs-5 text-white">Tahun Masuk</th>
+            <th class="fs-5 text-white">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <% foto.forEach((element, index) => { %>
+          <tr>
+            <td><%= item_per_page + index + 1 %></td>
+            <td class="mx-auto text-center d-flex justify-content-center"><img width="200" src="/uploads/guru/<%= element.image %>" alt="" srcset="" class="img-thumbnail"></td>
+            <td><%= element.namaGuru %></td>
+            <td>
+              <ul class="mb-0">
+                <% element.waliKelas.forEach((element, index) => { %>
+                <li><%= element.namaKelas %></li>
+                <% }) %>
+              </ul>
+            </td>
+            <td>
+              <% if (element.mataPelajaran.length > 1) { %>
+              <ul>
+                <% element.mataPelajaran.forEach((element, index) => { %>
+                <li><%= element %></li>
+                <% }) %>
+              </ul>
+              <% } else {%>
+              <p class="text-center mb-0"><%= element.mataPelajaran %></p>
+              <% } %>
+
+
+            </td>
+            <td><%= element.jurusan %></td>
+            <td><%= element.tahunMasuk %></td>
+
+
+            <td>
+              <div class="wrapper d-flex">
+                <a href="/foto/guru/edit/<%= element._id %>" class="btn btn-primary">
+                  <i class="bx bxs-edit-alt bx-sm"></i>
+                </a>
+                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCenter" id="button-addon1" data-nama-guru="<%= element.namaGuru %>" data-delete-url="/foto/guru/<%= element._id %>?_method=DELETE">
+
+                  <i class="bx bxs-trash-alt bx-sm"></i>
+                </button>
+              </div>
+            </td>
+            <% }) %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
