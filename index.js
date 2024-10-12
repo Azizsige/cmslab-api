@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Menggunakan middleware CORS
 app.use(cors());
 
