@@ -55,7 +55,7 @@ const generateRefreshToken = (user) => {
 
 const generateAccessToken = (user) => {
   return jwt.sign({ userId: user._id }, config.JWT_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "1m",
   });
 };
 
